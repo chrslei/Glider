@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var recordData: RecordData
+    @State var newRecord = Record()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            RecordList()
+            RecordCreator(record: newRecord)
+                .padding()
+    
+        }
+        .navigationTitle("Glider")
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(RecordData())
     }
 }

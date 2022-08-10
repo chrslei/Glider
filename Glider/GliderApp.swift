@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct GliderApp: App {
+    @StateObject private var recordData = RecordData()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                    ContentView()
+            }
+            .environmentObject(recordData)
         }
     }
 }
