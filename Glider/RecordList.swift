@@ -9,36 +9,48 @@ import SwiftUI
 
 struct RecordList: View {
     @EnvironmentObject var recordData: RecordData
+    @State var filter : Period = .all
+    
     var body: some View {
+        VStack{
+            Picker(selection: $filter, label: Text("Zeitraum")) {
+                Text("Alle").tag(Period.all)
+                Text("Heute").tag(Period.today)
+                Text("Woche").tag(Period.thisWeek)
+                Text("Monat").tag(Period.thisMonth)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            
         
-        
-        List {
-            Section(header:Text("GESAMT " +
-                        
-                                String(recordData.records
-                .filter( {$0.isToday == true} ) // Step 1
-                .map( {$0.duration }) // Step 2
-                                    .reduce(0, +))
-                            ))
-            {ForEach(recordData.records){ record in
-                RecordRow(record: record)
-                    .swipeActions(allowsFullSwipe: false) {
-                        Button {
-                            print("Muting conversation")
-                        } label: {
-                            Label("Mute", systemImage: "bell.slash.fill")
-                        }
-                        .tint(.indigo)
-                        
-                        Button(role: .destructive) {
-                            print("Deleting conversation")
-                        } label: {
-                            Label("Delete", systemImage: "trash.fill")
+            List{
+                if recordData.sortedRecords(
+                    period: filter).count == 0 {
+                    Text("Keine Einträge")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
+                else {
+                 
+                    Text("Gesamtzeit " + recordData.total(argument: filter))
+                        .bold()
+                Section (
+                    String(recordData.sortedRecords(
+                    period: filter).count) + " Einträge"){
+                ForEach(recordData.sortedRecords(
+                    period: filter)){ $record in
+                    RecordRow(record: record)
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                recordData.delete(record)
+                            } label: {
+                                Label("Delete", systemImage: "trash.fill")
+                            }
                         }
                     }
-                }
-        }
-        }
+            }
+            }
+            }
+    }
     }
 }
 

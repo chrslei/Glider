@@ -13,6 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack{
+            
             RecordList()
             RecordCreator(record: newRecord)
                 .padding()

@@ -20,7 +20,7 @@ struct RecordRow: View {
                 .frame(width: 65, alignment: .leading)
             Spacer()
             Text(record.start.formatted(date: .omitted, time: .shortened) + " – " + record.end.formatted(date: .omitted, time: .shortened) )
-                .frame(width: 160, alignment: .center)
+                .frame(width: 165, alignment: .center)
             Spacer()
             Text(record.durationInMinutesAsString)
                 .foregroundColor(.green)

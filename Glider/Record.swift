@@ -50,11 +50,11 @@ struct Record: Identifiable, Hashable {
     }
     
     var isThisWeek: Bool {
-        !isToday && Calendar.autoupdatingCurrent.isDateInThisWeek(start)
+        Calendar.autoupdatingCurrent.isDateInThisWeek(start)
     }
     
     var isThisMonth: Bool {
-        !isToday && Calendar.autoupdatingCurrent.isDateInThisMonth(start)
+        Calendar.autoupdatingCurrent.isDateInThisMonth(start)
     }
     
     static var example = Record(

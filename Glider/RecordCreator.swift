@@ -17,11 +17,25 @@ struct RecordCreator: View {
             Section{
             DatePicker("Start", selection: $record.start)
                 .padding(.horizontal)
+                .padding(.leading)
+                .font(.bold(.body)())
+                .foregroundColor(.gray)
                 
-                DatePicker("Ende", selection: $record.end //, displayedComponents: .hourAndMinute
+            DatePicker("Ende", selection: $record.end, //, displayedComponents: .hourAndMinute
+                           in: record.start.addingTimeInterval(60)...record.start.addingTimeInterval(86400)
                 )
                 .padding(.horizontal)
+                .padding(.leading)
+                .font(.bold(.body)())
+                .foregroundColor(.gray)
+                
                 Button {
+                    if record.start.distance(to: record.end) > 86500 {
+                        record.end = record.start.addingTimeInterval(60)
+                    }
+                    if record.start.distance(to: record.end) < 0 {
+                        record.end = record.start.addingTimeInterval(60)
+                    }
                     recordData.records.append(record)
                     record = Record(start: record.start, end: record.end)
                 } label: { Image (systemName: "plus")}

@@ -1,0 +1,6 @@
+framework module Pods_Glider {
+  umbrella header "Pods-Glider-umbrella.h"
+
+  export *
+  module * { export * }
+}
