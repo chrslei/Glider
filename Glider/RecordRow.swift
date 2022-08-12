@@ -17,16 +17,27 @@ struct RecordRow: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-                .frame(width: 65, alignment: .leading)
-            Spacer()
+                .scaledToFill()
+                           .minimumScaleFactor(0.1)
+                           .lineLimit(1)
+        Spacer()
             Text(record.start.formatted(date: .omitted, time: .shortened) + " – " + record.end.formatted(date: .omitted, time: .shortened) )
-                .frame(width: 165, alignment: .center)
+                .scaledToFill()
+                .multilineTextAlignment(.center)
+                .padding(.trailing)
+                .minimumScaleFactor(0.1)
+                .lineLimit(1)
+            Spacer()
             Spacer()
             Text(record.durationInMinutesAsString)
                 .foregroundColor(.green)
                 .bold()
-                .frame(width: 60, alignment: .trailing)
-            
+                .scaledToFill()
+                .padding(.trailing)
+                .minimumScaleFactor(0.1)
+                           .lineLimit(1)
+                           .frame(width: 20, alignment: .trailing)
+                           
         }
     }
 }

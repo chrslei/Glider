@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordList: View {
     @EnvironmentObject var recordData: RecordData
-    @State var filter : Period = .all
+    @Binding var filter : Period 
     
     // returns the proper grammatical number for String "record"
     func recordPlural() -> String {
@@ -57,7 +57,6 @@ struct RecordList: View {
                                         .swipeActions(allowsFullSwipe: false) {
                                             Button(role: .destructive) {
                                                 recordData.delete(record)
-                                                recordData.save()
                                             } label: {
                                                 Label("Delete", systemImage: "trash.fill")
                                             }
@@ -73,7 +72,7 @@ struct RecordList: View {
 struct RecordList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            RecordList().environmentObject(RecordData())
+            RecordList(filter: .constant(.all)).environmentObject(RecordData())
         }
     }
 }

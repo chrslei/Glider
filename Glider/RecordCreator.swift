@@ -10,6 +10,7 @@ import SwiftUI
 struct RecordCreator: View {
     @State var record: Record
     @EnvironmentObject var recordData : RecordData
+    @Binding var filter: Period
     
     var body: some View {
      
@@ -36,8 +37,30 @@ struct RecordCreator: View {
                     if record.start.distance(to: record.end) < 0 {
                         record.end = record.start.addingTimeInterval(60)
                     }
-                    recordData.records.append(record)
-                    recordData.save()
+                    recordData.add(record)
+                
+                    //Change filter according to new record
+                    if filter == .today && !record.isToday && !record.isThisMonth
+                    {
+                        filter = .all
+                    }
+                    if filter == .today && !record.isToday && record.isThisMonth
+                    {
+                        filter = .thisMonth
+                    }
+                    if filter == .thisWeek && !record.isThisWeek && !record.isToday && record.isThisMonth
+                    {
+                        filter = .thisMonth
+                    }
+                    if filter == .thisWeek && !record.isThisWeek && !record.isToday && !record.isThisMonth
+                    {
+                        filter = .all
+                    }
+                    if filter == .thisMonth && !record.isThisMonth
+                    {
+                        filter = .all
+                    }
+                    
                     record = Record(start: record.start, end: record.end)
                 } label: { Image (systemName: "plus")}
                     .padding(.top)
@@ -50,7 +73,7 @@ struct RecordCreator: View {
     struct EventCreator_Previews:
         PreviewProvider {
         static var previews: some View {
-            RecordCreator(record: Record())
+            RecordCreator(record: Record(), filter: .constant(.all))
                 .environmentObject(RecordData())
         }
     }

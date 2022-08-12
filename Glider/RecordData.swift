@@ -10,7 +10,7 @@ import SwiftUI
 class RecordData: ObservableObject {
 
 
-    @Published var records: [Record] = [
+    @Published private(set) var records: [Record] = [
         Record(
             start: Date.now,
             end: Date.now.addingTimeInterval(10000),
@@ -28,8 +28,10 @@ class RecordData: ObservableObject {
         )
     ]
     
+        let saveKey = "SavedData"
+    
     init() {
-        if let data = UserDefaults.standard.data(forKey: "SavedData") {
+        if let data = UserDefaults.standard.data(forKey: saveKey) {
             if let decoded = try? JSONDecoder().decode([Record].self, from: data) {
                 records = decoded
                 return
@@ -39,10 +41,16 @@ class RecordData: ObservableObject {
         records = []
     }
     
-    func save() {
+    private func save() {
         if let encoded = try? JSONEncoder().encode(records) {
-            UserDefaults.standard.set(encoded, forKey: "SavedData")
+            UserDefaults.standard.set(encoded, forKey: saveKey)
         }
+    }
+    
+    //add record to array
+    func add(_ record: Record) {
+        records.append(record)
+        save()
     }
     
     func total (argument: Period) -> String{
@@ -88,9 +96,10 @@ class RecordData: ObservableObject {
         
     }
     
-    
+    //delete record from array
     func delete(_ record: Record) {
         records.removeAll { $0.id == record.id }
+        save()
     }
     
     func sortedRecords(period: Period) -> Binding<[Record]> {

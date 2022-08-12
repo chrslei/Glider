@@ -10,11 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var recordData: RecordData
     @State var newRecord = Record()
+    @State var filter : Period
     var body: some View {
         VStack{
             
-            RecordList()
-            RecordCreator(record: newRecord)
+            RecordList(filter: $filter)
+            RecordCreator(record: newRecord, filter: $filter)
                 .padding()
     
         }
@@ -25,6 +26,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(RecordData())
+        ContentView(filter: .all).environmentObject(RecordData())
     }
 }

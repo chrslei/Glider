@@ -11,11 +11,10 @@ import SwiftUI
 struct GliderApp: App {
     @StateObject private var recordData = RecordData()
     
-    
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                    ContentView()
+                ContentView(filter: .all)
             }
             .environmentObject(recordData)
         }
