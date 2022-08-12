@@ -57,6 +57,7 @@ struct RecordList: View {
                                         .swipeActions(allowsFullSwipe: false) {
                                             Button(role: .destructive) {
                                                 recordData.delete(record)
+                                                recordData.save()
                                             } label: {
                                                 Label("Delete", systemImage: "trash.fill")
                                             }

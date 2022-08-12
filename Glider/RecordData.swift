@@ -8,7 +8,7 @@
 import SwiftUI
 
 class RecordData: ObservableObject {
-    
+
 
     @Published var records: [Record] = [
         Record(
@@ -27,6 +27,23 @@ class RecordData: ObservableObject {
             note: "Test3"
         )
     ]
+    
+    init() {
+        if let data = UserDefaults.standard.data(forKey: "SavedData") {
+            if let decoded = try? JSONDecoder().decode([Record].self, from: data) {
+                records = decoded
+                return
+            }
+        }
+        //no saved data!
+        records = []
+    }
+    
+    func save() {
+        if let encoded = try? JSONEncoder().encode(records) {
+            UserDefaults.standard.set(encoded, forKey: "SavedData")
+        }
+    }
     
     func total (argument: Period) -> String{
         var totalSeconds = 0

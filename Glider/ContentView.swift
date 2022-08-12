@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var recordData: RecordData
     @State var newRecord = Record()
-
     var body: some View {
         VStack{
             

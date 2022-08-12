@@ -37,6 +37,7 @@ struct RecordCreator: View {
                         record.end = record.start.addingTimeInterval(60)
                     }
                     recordData.records.append(record)
+                    recordData.save()
                     record = Record(start: record.start, end: record.end)
                 } label: { Image (systemName: "plus")}
                     .padding(.top)

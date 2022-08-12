@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Record: Identifiable, Hashable {
+struct Record: Identifiable, Hashable, Codable {
     var id = UUID()
     var start = Date.now
     var end = Date.now.addingTimeInterval(60)
