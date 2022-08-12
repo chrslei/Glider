@@ -11,8 +11,22 @@ struct RecordList: View {
     @EnvironmentObject var recordData: RecordData
     @State var filter : Period = .all
     
+    // returns the proper grammatical number for String "record"
+    func recordPlural() -> String {
+        if recordData.sortedRecords(period: filter).count != 1 {
+            return "Einträge"
+        }
+        else {
+            return "Eintrag"
+        }
+    }
+    
     var body: some View {
+        
+        
+        
         VStack{
+            
             Picker(selection: $filter, label: Text("Zeitraum")) {
                 Text("Alle").tag(Period.all)
                 Text("Heute").tag(Period.today)
@@ -21,7 +35,7 @@ struct RecordList: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             
-        
+            
             List{
                 if recordData.sortedRecords(
                     period: filter).count == 0 {
@@ -30,27 +44,28 @@ struct RecordList: View {
                         .foregroundColor(.gray)
                 }
                 else {
-                 
+                    
                     Text("Gesamtzeit " + recordData.total(argument: filter))
                         .bold()
-                Section (
-                    String(recordData.sortedRecords(
-                    period: filter).count) + " Einträge"){
-                ForEach(recordData.sortedRecords(
-                    period: filter)){ $record in
-                    RecordRow(record: record)
-                        .swipeActions(allowsFullSwipe: false) {
-                            Button(role: .destructive) {
-                                recordData.delete(record)
-                            } label: {
-                                Label("Delete", systemImage: "trash.fill")
-                            }
+                    
+                    
+                    Section (String(recordData.sortedRecords(
+                        period: filter).count) + " " + recordPlural()){
+                            ForEach(recordData.sortedRecords(
+                                period: filter)){ $record in
+                                    RecordRow(record: record)
+                                        .swipeActions(allowsFullSwipe: false) {
+                                            Button(role: .destructive) {
+                                                recordData.delete(record)
+                                            } label: {
+                                                Label("Delete", systemImage: "trash.fill")
+                                            }
+                                        }
+                                }
                         }
-                    }
+                }
             }
-            }
-            }
-    }
+        }
     }
 }
 
