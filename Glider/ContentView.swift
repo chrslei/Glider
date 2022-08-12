@@ -11,15 +11,46 @@ struct ContentView: View {
     @EnvironmentObject var recordData: RecordData
     @State var newRecord = Record()
     @State var filter : Period
+    @State var info = false
+    
     var body: some View {
+        
         VStack{
+            HStack {
+                Text("Glider")
+                    .font(.largeTitle.bold())
+                
+                Spacer()
+                
+                Button {
+                    info = true
+                }
+                label : {
+                    Image(systemName: "info.circle")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+                .sheet(isPresented: $info)
+                {
+                    NavigationView {
+                        InfoView()
+                            .navigationBarTitle(Text("Info"))
+                    }
+                }
+    
+            }
+            .padding(.all)
+            .padding(.bottom, -15)
+            .padding(.top, +10)
+            .navigationBarHidden(true)
+            
             
             RecordList(filter: $filter)
             RecordCreator(record: newRecord, filter: $filter)
                 .padding()
-    
+            
         }
-        .navigationTitle("Glider")
+        
         
     }
 }

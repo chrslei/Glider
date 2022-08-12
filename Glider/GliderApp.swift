@@ -15,7 +15,7 @@ struct GliderApp: App {
         WindowGroup {
             NavigationView {
                 ContentView(filter: .all)
-            }
+                }
             .environmentObject(recordData)
         }
     }

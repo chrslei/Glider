@@ -66,7 +66,7 @@ struct RecordCreator: View {
                     .padding(.top)
             }
         }
-        .navigationTitle("Glider")
+    
         
     }
     
