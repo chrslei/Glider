@@ -42,6 +42,8 @@ struct InfoView: View {
                 }
         Section ("Copyright") {
             Text("© 2022 Christopher Leibiger")
+                .font(.footnote)
+              
         }
         
             }

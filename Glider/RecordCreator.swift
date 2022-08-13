@@ -33,18 +33,19 @@ struct RecordCreator: View {
                         Text("Start")
                     }
                            .padding(.horizontal)
-                           .padding(.leading)
+                        .padding(.leading)
                            .font(.bold(.body)())
                            .foregroundColor(.gray)
+                                      .lineLimit(1)
 
                 DatePicker(selection: $end, in: start...start.addingTimeInterval(86400)) {
                         Text("End")
                     }
                         .padding(.horizontal)
-                        .padding(.leading)
+                       .padding(.leading)
                         .font(.bold(.body)())
                         .foregroundColor(.gray)
-                    
+                        .lineLimit(1)
         
                 Button {
                     

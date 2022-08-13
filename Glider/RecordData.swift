@@ -96,9 +96,24 @@ class RecordData: ObservableObject {
         
     }
     
-    //delete record from array
+    //delete single record from array
     func delete(_ record: Record) {
         records.removeAll { $0.id == record.id }
+        save()
+    }
+    
+    //delete multiple records from array
+    func deleteMultiple(_ period: Period) {
+        records.removeAll { switch period {
+        case .all:
+            return true
+        case .today:
+            return $0.isToday
+        case .thisWeek:
+            return $0.isThisWeek
+        case .thisMonth:
+            return $0.isThisMonth
+        } }
         save()
     }
     

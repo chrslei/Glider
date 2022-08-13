@@ -10,7 +10,8 @@ import Charts
 
 struct RecordList: View {
     @EnvironmentObject var recordData: RecordData
-    @Binding var filter : Period 
+    @Binding var filter : Period
+    @State private var showingDeleteAlert = false
     
     // returns the proper grammatical number for String "record"
     func recordPlural() -> String {
@@ -36,11 +37,7 @@ struct RecordList: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             
-            
-            
-            
-        
-            
+
             
             List{
                 if recordData.sortedRecords(
@@ -61,7 +58,7 @@ struct RecordList: View {
                 }
                 else {
                   
-                    //Test new function here
+                    //ChartView
                     Section("Übersicht"){
                         VStack{
                             if #available(iOS 16.0, *) {
@@ -83,21 +80,36 @@ struct RecordList: View {
                                 // Fallback on earlier versions
                             }
                             
-                            /*
-                            Text("Gesamt " + recordData.total(argument: filter))
-                                .bold()
-                                .padding(.leading)
-                                .foregroundColor(.gray)
-                             */
+            
                             HStack{
+    
+                               
                                 Button(recordData.total(argument: filter) +  " Gesamt", action: {})
                                     .buttonStyle(.bordered)
-                                Button(String(recordData.sortedRecords(
-                                    period: filter, isFalling: true).count) + " " + recordPlural(), action: {})
+                                    .disabled(true)
+                                
+                                Menu(String(recordData.sortedRecords(
+                                    period: filter, isFalling: true).count) + " " + recordPlural()) {
+                                        Button(role: .destructive, action: {showingDeleteAlert = true }) {
+                                              Label("Alle löschen", systemImage: "trash")
+                                          }
+                                        }
+                                    .confirmationDialog(
+                                              Text(String(recordData.sortedRecords(period: filter, isFalling: true).count) + " " + recordPlural() + " löschen?"),
+                                              isPresented: $showingDeleteAlert,
+                                              titleVisibility: .visible
+                                    ) {
+                                        Button("Löschen", role: .destructive) {
+                                            withAnimation {
+                                                recordData.deleteMultiple(filter)
+                                            }
+                                        }
+                                    }
                                     .buttonStyle(.bordered)
+
+                
                             }
                         }}
-                    //end test
                     
                     Section (recordPlural()){
                             ForEach(recordData.sortedRecords(
