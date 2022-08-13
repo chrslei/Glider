@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct RecordList: View {
     @EnvironmentObject var recordData: RecordData
@@ -36,21 +37,69 @@ struct RecordList: View {
             .pickerStyle(SegmentedPickerStyle())
             
             
+            
+            
+        
+            
+            
             List{
                 if recordData.sortedRecords(
                     period: filter).count == 0 {
                     Text("Keine Einträge")
                         .font(.footnote)
                         .foregroundColor(.gray)
+                    HStack {
+                        Image(systemName: "calendar.badge.plus")
+                            .foregroundColor(.gray)
+                    Text("Auf + tippen, um einen neuen Eintrag zu erstellen")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                            .padding(.leading, +10)
+                    }
+                    .padding()
                 }
                 else {
+                  
+                    //Test new function here
+                    Section("Übersicht"){
+                        VStack{
+                            if #available(iOS 16.0, *) {
+                                
+                                Chart {
+                                    
+                                    ForEach(recordData.sortedRecords(
+                                        period: filter)) { $record in
+                                            LineMark(
+                                                x: .value("Shape Type", record.start.formatted(.dateTime.day().month())),
+                                                y: .value("Total Count", record.durationInHours)
+                                            )
+                                        }
+                                }
+                                .frame(height: 100)
+                                .padding()
+                                
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            
+                            /*
+                            Text("Gesamt " + recordData.total(argument: filter))
+                                .bold()
+                                .padding(.leading)
+                                .foregroundColor(.gray)
+                             */
+                            HStack{
+                                Button(recordData.total(argument: filter) +  " Gesamt", action: {})
+                                    .buttonStyle(.bordered)
+                                Button(String(recordData.sortedRecords(
+                                    period: filter).count) + " " + recordPlural(), action: {})
+                                    .buttonStyle(.bordered)
+                            }
+                        }}
+                    //end test
                     
-                    Text("Gesamtzeit " + recordData.total(argument: filter))
-                        .bold()
-                    
-                    
-                    Section (String(recordData.sortedRecords(
-                        period: filter).count) + " " + recordPlural()){
+                    Section (recordPlural()){
                             ForEach(recordData.sortedRecords(
                                 period: filter)){ $record in
                                     RecordRow(record: record)

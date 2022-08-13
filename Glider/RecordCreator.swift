@@ -11,33 +11,46 @@ struct RecordCreator: View {
     @State var record: Record
     @EnvironmentObject var recordData : RecordData
     @Binding var filter: Period
+    @State var start: Date = Date()
+    @State var end: Date = Date()
     
     var body: some View {
      
         VStack{
+    
             Section{
-            DatePicker("Start", selection: $record.start)
-                .padding(.horizontal)
-                .padding(.leading)
-                .font(.bold(.body)())
-                .foregroundColor(.gray)
                 
-            DatePicker("Ende", selection: $record.end, //, displayedComponents: .hourAndMinute
-                           in: record.start.addingTimeInterval(60)...record.start.addingTimeInterval(86400)
-                )
-                .padding(.horizontal)
-                .padding(.leading)
-                .font(.bold(.body)())
-                .foregroundColor(.gray)
-                
+                DatePicker(selection: Binding<Date>(
+                       get: { self.start },
+                       set: { self.start = $0
+                           if self.end < $0 {
+                               self.end = $0.addingTimeInterval(60)
+                           }
+                           if self.end > $0.addingTimeInterval(86400) {
+                               self.end = $0.addingTimeInterval(60)
+                           }
+                       }), in: Date.distantPast...Date.distantFuture) {
+                        Text("Start")
+                    }
+                           .padding(.horizontal)
+                           .padding(.leading)
+                           .font(.bold(.body)())
+                           .foregroundColor(.gray)
+
+                DatePicker(selection: $end, in: start...start.addingTimeInterval(86400)) {
+                        Text("End")
+                    }
+                        .padding(.horizontal)
+                        .padding(.leading)
+                        .font(.bold(.body)())
+                        .foregroundColor(.gray)
+                    
+        
                 Button {
-                    if record.start.distance(to: record.end) > 86500 {
-                        record.end = record.start.addingTimeInterval(60)
-                    }
-                    if record.start.distance(to: record.end) < 0 {
-                        record.end = record.start.addingTimeInterval(60)
-                    }
-                    recordData.add(record)
+                    
+                
+                    recordData.add(Record(start: start, end: end))
+                    
                 
                     //Change filter according to new record
                     if filter == .today && !record.isToday && !record.isThisMonth

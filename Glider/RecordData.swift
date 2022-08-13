@@ -119,7 +119,7 @@ class RecordData: ObservableObject {
                     
                     }
                 }
-                .sorted { $0.start < $1.start }
+                .sorted { $0.start > $1.start }
             },
         set: { records in
                 for record in records {

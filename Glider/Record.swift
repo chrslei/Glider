@@ -21,6 +21,10 @@ struct Record: Identifiable, Hashable, Codable {
         Double(self.start.distance(to: self.end ) / 3600).rounded(digits: 2)
     }
     
+    var durationInHours: Double {
+       ( self.durationInSeconds / 60 ) / 60
+    }
+    
     var durationInMinutesAsString: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]

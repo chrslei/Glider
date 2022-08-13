@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A12A36028A68CCA004E0992 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12A35F28A68CCA004E0992 /* InfoView.swift */; };
+		8A12A36228A6A20C004E0992 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12A36128A6A20C004E0992 /* TestView.swift */; };
 		8A930C3928A2A2740076A63C /* GliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C3828A2A2740076A63C /* GliderApp.swift */; };
 		8A930C3B28A2A2740076A63C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C3A28A2A2740076A63C /* ContentView.swift */; };
 		8A930C3D28A2A2750076A63C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A930C3C28A2A2750076A63C /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		3558FB9E1A4EDD6A6A0F4055 /* Pods-Glider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.release.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.release.xcconfig"; sourceTree = "<group>"; };
 		8A12A35F28A68CCA004E0992 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		8A12A36128A6A20C004E0992 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		8A930C3528A2A2740076A63C /* Glider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A930C3828A2A2740076A63C /* GliderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GliderApp.swift; sourceTree = "<group>"; };
 		8A930C3A28A2A2740076A63C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				8A930C4A28A2A2EA0076A63C /* RecordData.swift */,
 				8A930C3C28A2A2750076A63C /* Assets.xcassets */,
 				8A930C3E28A2A2750076A63C /* Preview Content */,
+				8A12A36128A6A20C004E0992 /* TestView.swift */,
 			);
 			path = Glider;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				8A930C4B28A2A2EA0076A63C /* RecordData.swift in Sources */,
 				8A930C4D28A2A3030076A63C /* RecordList.swift in Sources */,
 				8A930C4928A2A2D90076A63C /* RecordCreator.swift in Sources */,
+				8A12A36228A6A20C004E0992 /* TestView.swift in Sources */,
 				8A930C3928A2A2740076A63C /* GliderApp.swift in Sources */,
 				8A930C4728A2A2C10076A63C /* Record.swift in Sources */,
 			);
