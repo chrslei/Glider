@@ -1,8 +1,10 @@
 # Glider
-<img width="249" alt="Bildschirmfoto 2022-08-11 um 21 35 35" src="https://user-images.githubusercontent.com/86011906/184225386-ccf278b3-66dd-48b4-bfd2-a8603fb10668.png"> <img width="249" alt="Bildschirmfoto 2022-08-11 um 21 35 47" src="https://user-images.githubusercontent.com/86011906/184225398-50ca4d77-5725-4eac-932e-7730499cb663.png">
+<img width="322" alt="home_light" src="https://user-images.githubusercontent.com/86011906/184480242-bc7dd17e-784b-4096-b425-2c941e9880e7.png"> <img width="322" alt="home_dark" src="https://user-images.githubusercontent.com/86011906/184480241-6fe867bf-0140-4517-8b24-f6b35832c1c2.png">
+
 
 Glider ist eine iOS-App zur Zeiterfassung
 
 ### Funktionsumfang
  - Erfassung von Zeitabständen von bis zu 24 Stunden
  - Tages-, Wochen-, und Monatsansichten
+ - Chart-Darstellung
