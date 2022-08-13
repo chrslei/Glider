@@ -35,6 +35,18 @@ struct ContentView: View {
                     NavigationView {
                         InfoView()
                             .navigationBarTitle(Text("Info"))
+                            .toolbar {
+                                      ToolbarItem() {
+                                          Button {
+                                              info = false
+                                          }
+                                      label: {
+                                          Image(systemName: "xmark")
+                                              .padding([.top], 20)
+                                      }
+                                      
+                    }
+                }
                     }
                 }
     

@@ -9,7 +9,6 @@ import SwiftUI
 
 class RecordData: ObservableObject {
 
-
     @Published private(set) var records: [Record] = [
         Record(
             start: Date.now,
@@ -28,7 +27,8 @@ class RecordData: ObservableObject {
         )
     ]
     
-        let saveKey = "SavedData"
+    let saveKey = "SavedData"
+    
     
     init() {
         if let data = UserDefaults.standard.data(forKey: saveKey) {
@@ -102,7 +102,7 @@ class RecordData: ObservableObject {
         save()
     }
     
-    func sortedRecords(period: Period) -> Binding<[Record]> {
+    func sortedRecords(period: Period, isFalling: Bool) -> Binding<[Record]> {
         Binding<[Record]> (
             get: {
                 self.records
@@ -119,7 +119,14 @@ class RecordData: ObservableObject {
                     
                     }
                 }
-                .sorted { $0.start < $1.start }
+                
+                .sorted {
+                    if isFalling
+                    {
+                      return $0.start > $1.start}
+                    else
+                    { return $0.start < $1.start}
+                }
             },
         set: { records in
                 for record in records {
