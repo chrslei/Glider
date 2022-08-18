@@ -15,52 +15,60 @@ struct RecordCreator: View {
     @State var end: Date = Date()
     
     var body: some View {
-     
+        
         VStack{
-    
+            
             Section{
                 
                 DatePicker(selection: Binding<Date>(
-                       get: { self.start },
-                       set: { self.start = $0
-                           if self.end < $0 {
-                               self.end = $0
-                           }
-                           if self.end > $0.addingTimeInterval(86400) {
-                               self.end = $0
-                           }
-                       }), in: Date.distantPast...Date.distantFuture) {
+                    get: { self.start },
+                    set: { self.start = $0
+                        if self.end < $0 {
+                            self.end = $0
+                        }
+                        if self.end > $0.addingTimeInterval(86400) {
+                            self.end = $0
+                        }
+                    }), in: Date.distantPast...Date.distantFuture) {
                         Text("Start")
                     }
-                           .padding(.horizontal)
-                        .padding(.leading)
-                           .font(.bold(.body)())
-                           .foregroundColor(.gray)
-                                      .lineLimit(1)
-
+                    .padding(.horizontal)
+                    .padding(.leading)
+                    .font(.bold(.body)())
+                    .foregroundColor(.gray)
+                    .lineLimit(1)
+                
                 DatePicker(selection: $end, in: start...start.addingTimeInterval(86400)) {
-                        Text("End")
-                    }
-                        .padding(.horizontal)
-                       .padding(.leading)
-                        .font(.bold(.body)())
-                        .foregroundColor(.gray)
-                        .lineLimit(1)
-              
+                    Text("End")
+                }
+                .padding(.horizontal)
+                .padding(.leading)
+                .font(.bold(.body)())
+                .foregroundColor(.gray)
+                .lineLimit(1)
                 
-            
+                TextField("#Tag hinzufügen", text: $record.note)
+                    .multilineTextAlignment(.trailing)
+                    .padding(.trailing)
+                    .foregroundColor(.gray)
+                
+                
+                
+                
                 Button {
-                    
-                
-                    recordData.add(Record(start: start, end: end))
-                    
-                
+                    record = Record(start: start, end: end, note: record.note)
+                    recordData.add(record)
+                    print(filter)
                     //Change filter according to new record
                     if filter == .today && !record.isToday && !record.isThisMonth
                     {
                         filter = .all
                     }
-                    if filter == .today && !record.isToday && record.isThisMonth
+                    if filter == .today && !record.isToday && record.isThisWeek
+                    {
+                        filter = .thisWeek
+                    }
+                    if filter == .today && !record.isToday && !record.isThisWeek && record.isThisMonth
                     {
                         filter = .thisMonth
                     }
@@ -76,18 +84,16 @@ struct RecordCreator: View {
                     {
                         filter = .all
                     }
-
-                    
                     record = Record(start: record.start, end: record.end)
                 }
             label: { Image (systemName: "plus")}
-    
+                
                     .padding(.top)
-                  
+                
             }
-           
+            
         }
-    
+        
         
     }
     
