@@ -23,11 +23,35 @@ struct RecordList: View {
         }
     }
     
+    func returnListTitle(_ period: Period) -> String {
+        if period.name == "Heute"
+        {
+            return Date.now.formatted(date: .abbreviated, time: .omitted)
+        }
+        if period.name == "Woche"
+        {
+            return (Date.now.startOfWeek?.formatted(.dateTime.day().month()) ?? "Ka") + " – " + (Date.now.endOfWeek?.formatted(date: .abbreviated, time: .omitted))!
+        }
+        if period.name == "Monat"
+        { return (Date.now.startOfMonth().formatted(.dateTime.day().month()) ) + " – " + (Date.now.endOfMonth().formatted(date: .abbreviated, time: .omitted))}
+        
+        else {
+            
+            if recordData.sortedRecords(period: filter, isFalling: true).count == 0 {
+                return "Alle"
+            }
+            
+            return  (recordData.records.min(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka") + " – " + (recordData.records.max(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka")
+        }
+        
+    }
+    
     var body: some View {
         
         
         
         VStack{
+            
             
             Picker(selection: $filter, label: Text("Zeitraum")) {
                 Text("Alle").tag(Period.all)
@@ -37,31 +61,39 @@ struct RecordList: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             
-
             
             List{
-                if recordData.sortedRecords(
-                    period: filter, isFalling: true).count == 0 {
-                    Text("Keine Einträge")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                    HStack {
-                        Image(systemName: "calendar.badge.plus")
-                            .foregroundColor(.gray)
-                    Text("Auf + tippen, um einen neuen Eintrag zu erstellen")
+                
+                
+                Section(returnListTitle(filter)){
+                    
+                    if recordData.sortedRecords(
+                        period: filter, isFalling: true).count == 0 {
+                        
+                        
+                        Text("Keine Einträge")
                             .font(.footnote)
-                            .bold()
                             .foregroundColor(.gray)
-                            .padding(.leading, +10)
+                        HStack {
+                            Image(systemName: "calendar.badge.plus")
+                                .foregroundColor(.gray)
+                            Text("Auf + tippen, um einen neuen Eintrag zu erstellen")
+                                .font(.footnote)
+                                .bold()
+                                .foregroundColor(.gray)
+                                .padding(.leading, +10)
+                        }
+                        .padding()
                     }
-                    .padding()
-                }
-                else {
-                  
-                    //ChartView
-                    Section("Übersicht"){
+                    else {
+                        
+                        //ChartView
+                        
+                        
                         VStack{
-                            if #available(iOS 16.0, *) {
+                            if #available(iOS 16.0, *) //, recordData.sortedRecords(
+                            //  period: filter, isFalling: true).count > 1
+                            {
                                 
                                 Chart {
                                     
@@ -80,10 +112,10 @@ struct RecordList: View {
                                 // Fallback on earlier versions
                             }
                             
-            
+                            
                             HStack{
-    
-                               
+                                
+                                
                                 Button(recordData.total(argument: filter) +  " Gesamt", action: {})
                                     .buttonStyle(.bordered)
                                     .disabled(true)
@@ -91,13 +123,13 @@ struct RecordList: View {
                                 Menu(String(recordData.sortedRecords(
                                     period: filter, isFalling: true).count) + " " + recordPlural()) {
                                         Button(role: .destructive, action: {showingDeleteAlert = true }) {
-                                              Label("Alle löschen", systemImage: "trash")
-                                          }
+                                            Label("Alle löschen", systemImage: "trash")
                                         }
+                                    }
                                     .confirmationDialog(
-                                              Text(String(recordData.sortedRecords(period: filter, isFalling: true).count) + " " + recordPlural() + " löschen?"),
-                                              isPresented: $showingDeleteAlert,
-                                              titleVisibility: .visible
+                                        Text(String(recordData.sortedRecords(period: filter, isFalling: true).count) + " " + recordPlural() + " löschen?"),
+                                        isPresented: $showingDeleteAlert,
+                                        titleVisibility: .visible
                                     ) {
                                         Button("Löschen", role: .destructive) {
                                             withAnimation {
@@ -106,34 +138,66 @@ struct RecordList: View {
                                         }
                                     }
                                     .buttonStyle(.bordered)
-
-                
+                                
+                                
                             }
+                            
                         }}
+                }
+                .headerProminence(.increased)
+                
+                //Einträge
+                if recordData.sortedRecords(
+                    period: filter, isFalling: true).count > 0
                     
+                {
                     Section (recordPlural()){
-                            ForEach(recordData.sortedRecords(
-                                period: filter, isFalling: true)){ $record in
-                                    RecordRow(record: record)
-                                        .swipeActions(allowsFullSwipe: false) {
-                                            Button(role: .destructive) {
-                                                recordData.delete(record)
-                                            } label: {
-                                                Label("Delete", systemImage: "trash.fill")
-                                            }
+                        ForEach(recordData.sortedRecords(
+                            period: filter, isFalling: true)){ $record in
+                                RecordRow(record: record)
+                                    .swipeActions(allowsFullSwipe: false) {
+                                        Button(role: .destructive) {
+                                            recordData.delete(record)
+                                        } label: {
+                                            Label("Delete", systemImage: "trash.fill")
                                         }
-                                }
-                        }
+                                    }
+                            }
+                    }
                 }
             }
         }
     }
 }
 
+
 struct RecordList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             RecordList(filter: .constant(.all)).environmentObject(RecordData())
         }
+    }
+}
+
+
+extension Date {
+    var startOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 1, to: sunday)
+    }
+    
+    var endOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 7, to: sunday)
+    }
+    
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
     }
 }

@@ -16,6 +16,7 @@ func getPadding(_ isExpanded: Bool) -> CGFloat {
         return CGFloat(30)
 }
 
+
 struct ContentView: View {
     @EnvironmentObject var recordData: RecordData
     @State var newRecord = Record()
@@ -24,80 +25,81 @@ struct ContentView: View {
     @State private var isExpanded = true
     
     var body: some View {
-        
-        VStack{
-            HStack {
-                Text("Glider")
-                    .font(.largeTitle.bold())
-                
-                Spacer()
-                
-                Button {
-                    info = true
-                }
-                label : {
-                    Image(systemName: "info.circle")
-                        .font(.title)
-                        .foregroundColor(.blue)
-                }
-                .sheet(isPresented: $info)
-                {
-                    NavigationView {
-                        InfoView()
-                            .navigationBarTitle(Text("Info"))
-                            .toolbar {
-                                ToolbarItem() {
-                                    Button {
-                                        info = false
-                                    }
-                                label: {
-                                    Image(systemName: "xmark")
-                                        .padding([.top], 20)
-                                }
-                                    
-                                }
-                            }
+      
+            VStack{
+                HStack {
+                    Text("Glider")
+                        .font(.largeTitle.bold())
+                    
+                    Spacer()
+                    
+                    Button {
+                        info = true
                     }
+                    label : {
+                        Image(systemName: "info.circle")
+                            .font(.title)
+                            .foregroundColor(.blue)
+                    }
+                    .sheet(isPresented: $info)
+                    {
+                        NavigationView {
+                            InfoView()
+                                .navigationBarTitle(Text("Info"))
+                                .toolbar {
+                                    ToolbarItem() {
+                                        Button {
+                                            info = false
+                                        }
+                                    label: {
+                                        Image(systemName: "xmark")
+                                            .padding([.top], 20)
+                                    }
+                                        
+                                    }
+                                }
+                        }
+                    }
+                    
+                }
+                .padding(.all)
+                .padding(.bottom, -15)
+                .padding(.top, +10)
+                .navigationBarHidden(true)
+                
+                
+                RecordList(filter: $filter)
+                
+                Capsule()
+                    .foregroundColor(.gray
+                        .opacity(0.25))
+                    .frame(height: 4.0)
+                    .padding(.horizontal, getPadding(isExpanded))
+                
+                
+                Button(action : {withAnimation { self.isExpanded.toggle() }}) {
+                    Image(systemName: "chevron.down")
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                        .foregroundColor(.gray)
+                        .font(.footnote.bold())
+                        .frame(width: 300, height: 15)
+                }
+                .rotationEffect(Angle.degrees(!isExpanded ? 180 : 0))
+                
+                
+                
+                if isExpanded {
+                    RecordCreator(record: newRecord, filter: $filter)
+                        .padding(.horizontal)
+                        .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
                 }
                 
-            }
-            .padding(.all)
-            .padding(.bottom, -15)
-            .padding(.top, +10)
-            .navigationBarHidden(true)
-            
-            
-            RecordList(filter: $filter)
-            
-            Capsule()
-                .foregroundColor(.gray
-                   .opacity(0.25))
-         .frame(height: 4.0)
-         .padding(.horizontal, getPadding(isExpanded))
-        
-            
-            Button(action : {withAnimation { self.isExpanded.toggle() }}) {
-                Image(systemName: "chevron.down")
-                                    .padding(.top, 5)
-                                    .padding(.bottom, 5)
-                                    .foregroundColor(.gray)
-                                    .font(.footnote.bold())
-                                    .frame(width: 300, height: 15)
-            }
-            .rotationEffect(Angle.degrees(!isExpanded ? 180 : 0))
-          
-            
-                            
-            if isExpanded {
-                RecordCreator(record: newRecord, filter: $filter)
-                    .padding(.horizontal)
-                    .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
-            }
                 
+            }
             
         }
-        
-        }
+    
         
     }
 

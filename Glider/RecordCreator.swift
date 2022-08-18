@@ -46,7 +46,9 @@ struct RecordCreator: View {
                         .font(.bold(.body)())
                         .foregroundColor(.gray)
                         .lineLimit(1)
-        
+              
+                
+            
                 Button {
                     
                 
@@ -74,11 +76,16 @@ struct RecordCreator: View {
                     {
                         filter = .all
                     }
+
                     
                     record = Record(start: record.start, end: record.end)
-                } label: { Image (systemName: "plus")}
+                }
+            label: { Image (systemName: "plus")}
+    
                     .padding(.top)
+                  
             }
+           
         }
     
         

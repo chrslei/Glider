@@ -45,12 +45,14 @@ struct Record: Identifiable, Hashable, Codable {
     */
     
     var isToday: Bool {
-        let diff = Calendar.current.dateComponents([.day], from: start, to: Date.now)
+        Calendar.autoupdatingCurrent.isDateInToday(start)
+       /* let diff = Calendar.current.dateComponents([.day], from: start, to: Date.now)
         if diff.day == 0 {
             return true
         } else {
             return false
         }
+        */
     }
     
     var isThisWeek: Bool {
@@ -101,6 +103,8 @@ extension Calendar {
         return isDate(date, equalTo: followingMonth, toGranularity: .month)
     }
 }
+
+
 
 extension Double {
     func rounded(digits: Int) -> Double {
