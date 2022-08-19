@@ -22,8 +22,11 @@ struct SearchBar: View {
                      TextField("Search ..", text: $searchText)
                          .focused($searchIsFocused)
                          .onChange(of: searchIsFocused) { isFocused in
-                             withAnimation { self.isExpanded = false }
-                                    }
+                             if !searchIsFocused && isExpanded
+                             {}
+                             else {
+                                 withAnimation { self.isExpanded = false }
+                             }}
                      //Delete input button
                      if !searchText.isEmpty
                      {

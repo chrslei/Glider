@@ -12,7 +12,7 @@ struct RecordCreator: View {
     @EnvironmentObject var recordData : RecordData
     @Binding var filter: Period
     @State var start: Date = Date()
-    @State var end: Date = Date()
+    @State var end: Date = Date().nextHour()
     @FocusState private var noteIsFocused: Bool
     
     var body: some View {
@@ -53,53 +53,63 @@ struct RecordCreator: View {
                     .padding(.trailing, 20)
                     .foregroundColor(.gray)
                     .focused($noteIsFocused)
-    
                 
                 
-                
-                Button {
-                    record = Record(start: start, end: end, note: record.note)
-                    recordData.add(record)
-                    print(filter)
-                    //Change filter according to new record
-                    if filter == .today && !record.isToday && !record.isThisMonth
-                    {
-                        filter = .all
+                ZStack{
+                    
+                    Button {
+                        record = Record(start: start, end: end, note: record.note)
+                        recordData.add(record)
+                        print(filter)
+                        //Change filter according to new record
+                        if filter == .today && !record.isToday && !record.isThisMonth
+                        {
+                            filter = .all
+                        }
+                        if filter == .today && !record.isToday && record.isThisWeek
+                        {
+                            filter = .thisWeek
+                        }
+                        if filter == .today && !record.isToday && !record.isThisWeek && record.isThisMonth
+                        {
+                            filter = .thisMonth
+                        }
+                        if filter == .thisWeek && !record.isThisWeek && !record.isToday && record.isThisMonth
+                        {
+                            filter = .thisMonth
+                        }
+                        if filter == .thisWeek && !record.isThisWeek && !record.isToday && !record.isThisMonth
+                        {
+                            filter = .all
+                        }
+                        if filter == .thisMonth && !record.isThisMonth
+                        {
+                            filter = .all
+                        }
+                        record = Record(start: record.start, end: record.end)
+                        noteIsFocused = false
+                        
                     }
-                    if filter == .today && !record.isToday && record.isThisWeek
-                    {
-                        filter = .thisWeek
+                label: { Image (systemName: "plus")}
+                    
+                        .padding(.top)
+                        .padding(.bottom)
+                        .frame(alignment: .center)
+                    
+                    if noteIsFocused{
+                        Button("Done", action: {
+                            noteIsFocused = false
+                        })
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing)
                     }
-                    if filter == .today && !record.isToday && !record.isThisWeek && record.isThisMonth
-                    {
-                        filter = .thisMonth
-                    }
-                    if filter == .thisWeek && !record.isThisWeek && !record.isToday && record.isThisMonth
-                    {
-                        filter = .thisMonth
-                    }
-                    if filter == .thisWeek && !record.isThisWeek && !record.isToday && !record.isThisMonth
-                    {
-                        filter = .all
-                    }
-                    if filter == .thisMonth && !record.isThisMonth
-                    {
-                        filter = .all
-                    }
-                    record = Record(start: record.start, end: record.end)
-                    noteIsFocused = false
-
                 }
-            label: { Image (systemName: "plus")}
-                
-                    .padding(.top)
-                    .padding(.bottom)
                 
             }
             
+            
+            
         }
-        
-        
     }
     
     struct EventCreator_Previews:
@@ -110,3 +120,15 @@ struct RecordCreator: View {
         }
     }
 }
+
+extension Date {
+func nextHour() -> Date
+{
+    let cal = Calendar.current
+    let minutes = cal.component(.minute, from: self)
+    var roundedMinute = minutes
+
+        roundedMinute = 60
+    
+    return cal.date(byAdding: .minute, value: roundedMinute - minutes, to: self)!
+}}
