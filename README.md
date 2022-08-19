@@ -1,5 +1,7 @@
 # Glider
-<img width="567" alt="home_sidebyside_80prozent" src="https://user-images.githubusercontent.com/86011906/184480444-280d79cc-2a40-4d70-8285-0aafd18e99ee.png">
+
+<img width="566" alt="sidebyside_aug19_80proz" src="https://user-images.githubusercontent.com/86011906/185685556-f28122e0-d47f-4efa-b7f2-f8723b94710e.png">
+
 
 
 Glider ist eine iOS-App zur Zeiterfassung
