@@ -7,7 +7,7 @@
 Glider ist eine iOS-App zur Zeiterfassung
 
 ### Funktionsumfang
- - Erfassung von Zeitabständen von bis zu 24 Stunden
+ - Erfassung von Zeitabständen
  - Tages-, Wochen-, und Monatsansichten
  - Chart-Darstellung
  - Suchfunktion
