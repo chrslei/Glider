@@ -13,6 +13,7 @@ struct RecordCreator: View {
     @Binding var filter: Period
     @State var start: Date = Date()
     @State var end: Date = Date()
+    @FocusState private var noteIsFocused: Bool
     
     var body: some View {
         
@@ -49,9 +50,10 @@ struct RecordCreator: View {
                 
                 TextField("#Tag hinzufügen", text: $record.note)
                     .multilineTextAlignment(.trailing)
-                    .padding(.trailing)
+                    .padding(.trailing, 20)
                     .foregroundColor(.gray)
-                
+                    .focused($noteIsFocused)
+    
                 
                 
                 
@@ -85,10 +87,13 @@ struct RecordCreator: View {
                         filter = .all
                     }
                     record = Record(start: record.start, end: record.end)
+                    noteIsFocused = false
+
                 }
             label: { Image (systemName: "plus")}
                 
                     .padding(.top)
+                    .padding(.bottom)
                 
             }
             

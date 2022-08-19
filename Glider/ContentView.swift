@@ -23,10 +23,12 @@ struct ContentView: View {
     @State var filter : Period
     @State var info = false
     @State private var isExpanded = true
+    @State var searchText : String
+
     
     var body: some View {
       
-            VStack{
+        VStack (alignment: .leading) {
                 HStack {
                     Text("Glider")
                         .font(.largeTitle.bold())
@@ -61,14 +63,28 @@ struct ContentView: View {
                         }
                     }
                     
+                    
                 }
+        
                 .padding(.all)
                 .padding(.bottom, -15)
-                .padding(.top, +10)
+               //.padding(.top, +10)
+                .navigationTitle("")
                 .navigationBarHidden(true)
+            
+            
+                SearchBar(searchText: $searchText, isExpanded: $isExpanded)
+                    .padding(.top, -20)
+                    .padding(.bottom, -12)
+               
                 
-                
-                RecordList(filter: $filter)
+               //     .padding(.trailing, 100)
+                RangePicker(filter: $filter)
+                    .padding(.horizontal)
+             
+                RecordList(filter: $filter, searchText: $searchText)
+                   
+            
                 
                 Capsule()
                     .foregroundColor(.gray
@@ -83,10 +99,11 @@ struct ContentView: View {
                         .padding(.bottom, 5)
                         .foregroundColor(.gray)
                         .font(.footnote.bold())
-                        .frame(width: 300, height: 15)
+                        .frame(height: 15)
+                        .frame(maxWidth: .infinity)
                 }
                 .rotationEffect(Angle.degrees(!isExpanded ? 180 : 0))
-                
+               
                 
                 
                 if isExpanded {
@@ -97,6 +114,7 @@ struct ContentView: View {
                 
                 
             }
+        
             
         }
     
@@ -106,6 +124,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(filter: .all).environmentObject(RecordData())
+        ContentView(filter: .all, searchText: "").environmentObject(RecordData())
     }
 }

@@ -117,20 +117,20 @@ class RecordData: ObservableObject {
         save()
     }
     
-    func sortedRecords(period: Period, isFalling: Bool) -> Binding<[Record]> {
+    func sortedRecords(period: Period, isFalling: Bool, searchText: String) -> Binding<[Record]> {
         Binding<[Record]> (
             get: {
                 self.records
                     .filter {
                     switch period {
                     case .all:
-                        return true
+                        return $0.note.lowercased().contains(searchText.lowercased()) || ($0.note.isEmpty && searchText.isEmpty) || (!$0.note.isEmpty && searchText.isEmpty)
                     case .today:
-                        return $0.isToday
+                        return $0.isToday && ($0.note.lowercased().contains(searchText.lowercased()) || ($0.note.isEmpty && searchText.isEmpty)) || (!$0.note.isEmpty && searchText.isEmpty)
                     case .thisWeek:
-                        return $0.isThisWeek
+                        return $0.isThisWeek && ($0.note.lowercased().contains(searchText.lowercased()) || ($0.note.isEmpty && searchText.isEmpty)) || (!$0.note.isEmpty && searchText.isEmpty)
                     case .thisMonth:
-                        return $0.isThisMonth
+                        return $0.isThisMonth && ($0.note.lowercased().contains(searchText.lowercased()) || ($0.note.isEmpty && searchText.isEmpty)) || (!$0.note.isEmpty && searchText.isEmpty)
                     
                     }
                 }

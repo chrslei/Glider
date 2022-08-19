@@ -14,7 +14,7 @@ struct GliderApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView(filter: .all)
+                ContentView(filter: .all, searchText: "")
                 }
             .environmentObject(recordData)
         }

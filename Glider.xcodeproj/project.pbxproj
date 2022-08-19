@@ -18,6 +18,8 @@
 		8A930C4B28A2A2EA0076A63C /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4A28A2A2EA0076A63C /* RecordData.swift */; };
 		8A930C4D28A2A3030076A63C /* RecordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4C28A2A3030076A63C /* RecordList.swift */; };
 		8A930C4F28A2A3190076A63C /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4E28A2A3190076A63C /* RecordRow.swift */; };
+		8AE4606628AFB87800DBBAB2 /* RangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4606528AFB87800DBBAB2 /* RangePicker.swift */; };
+		8AE4606828AFCC3B00DBBAB2 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4606728AFCC3B00DBBAB2 /* SearchBar.swift */; };
 		9C77D4026A69BC0F4B6D79EA /* Pods_Glider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40B73A1C707123221EFBD06 /* Pods_Glider.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		8A930C4A28A2A2EA0076A63C /* RecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordData.swift; sourceTree = "<group>"; };
 		8A930C4C28A2A3030076A63C /* RecordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordList.swift; sourceTree = "<group>"; };
 		8A930C4E28A2A3190076A63C /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
+		8AE4606528AFB87800DBBAB2 /* RangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePicker.swift; sourceTree = "<group>"; };
+		8AE4606728AFCC3B00DBBAB2 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B40B73A1C707123221EFBD06 /* Pods_Glider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0342BA44ED3BF60F06981D0 /* Pods-Glider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.debug.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,12 +87,14 @@
 			children = (
 				8A930C3828A2A2740076A63C /* GliderApp.swift */,
 				8A930C3A28A2A2740076A63C /* ContentView.swift */,
+				8AE4606728AFCC3B00DBBAB2 /* SearchBar.swift */,
 				8A12A35F28A68CCA004E0992 /* InfoView.swift */,
 				8A930C4828A2A2D90076A63C /* RecordCreator.swift */,
 				8A930C4C28A2A3030076A63C /* RecordList.swift */,
 				8A930C4E28A2A3190076A63C /* RecordRow.swift */,
 				8A930C4628A2A2C10076A63C /* Record.swift */,
 				8A930C4A28A2A2EA0076A63C /* RecordData.swift */,
+				8AE4606528AFB87800DBBAB2 /* RangePicker.swift */,
 				8A930C3C28A2A2750076A63C /* Assets.xcassets */,
 				8A930C3E28A2A2750076A63C /* Preview Content */,
 				8A12A36128A6A20C004E0992 /* TestView.swift */,
@@ -235,6 +241,8 @@
 				8A12A36228A6A20C004E0992 /* TestView.swift in Sources */,
 				8A930C3928A2A2740076A63C /* GliderApp.swift in Sources */,
 				8A930C4728A2A2C10076A63C /* Record.swift in Sources */,
+				8AE4606828AFCC3B00DBBAB2 /* SearchBar.swift in Sources */,
+				8AE4606628AFB87800DBBAB2 /* RangePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
