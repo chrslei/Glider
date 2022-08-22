@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//adjust divider length above ContenCreator
+//adjust divider length above ContentCreator
 func getPadding(_ isExpanded: Bool) -> CGFloat {
         if !isExpanded {
                 return CGFloat(120)

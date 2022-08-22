@@ -19,7 +19,7 @@ struct SearchBar: View {
                      .foregroundColor(Color("LightGray"))
                  HStack {
                      Image(systemName: "magnifyingglass")
-                     TextField("Search ..", text: $searchText)
+                     TextField("Suchen", text: $searchText)
                          .focused($searchIsFocused)
                          .onChange(of: searchIsFocused) { isFocused in
                              if !searchIsFocused && isExpanded
@@ -52,7 +52,7 @@ struct SearchBar: View {
              .padding([.top, .leading, .bottom])
              
              if searchIsFocused {
-                 Button("Done", action: {searchIsFocused = false
+                 Button("Fertig", action: {searchIsFocused = false
                  })
              }
          }

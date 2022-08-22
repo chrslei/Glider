@@ -43,7 +43,12 @@ struct RecordList: View {
                 return "Alle"
             }
             
-            return  (recordData.records.min(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka") + " – " + (recordData.records.max(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka")
+            if recordData.records.min(by: {a, b in a.start < b.start})?.start == recordData.records.max(by: {a, b in a.start < b.start})?.start {
+                return (recordData.records.min(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka")}
+                else
+            {
+                    return  (recordData.records.min(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka") + " – " + (recordData.records.max(by: {a, b in a.start < b.start})?.start.formatted(date: .abbreviated, time: .omitted) ?? "Ka")
+                }
         }
         
     }

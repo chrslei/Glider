@@ -24,7 +24,7 @@ struct InfoView: View {
                                 .bold()
                             Text("Tippe auf das + Symbol, um einen neuen Eintrag zu erstellen")
                         }
-                        .padding()
+                        .padding(5)
                         
                     }
                     HStack {
@@ -36,7 +36,21 @@ struct InfoView: View {
                                 .bold()
                             Text("Um einen Eintrag zu löschen, swipe nach links")
                         }
-                        .padding()
+                        .padding(5)
+                        
+                    }
+                    HStack {
+                        Image(systemName: "mail.and.text.magnifyingglass")
+                            .font(.title)
+                            .padding()
+                            .padding(.trailing, -4)
+                            .foregroundColor(.gray)
+                        VStack(alignment: .leading){Text("Einträge suchen")
+                                .bold()
+                            Text("Füge beim Erstellen von Einträgen Tags hinzu, um nach ihnen zu suchen")
+                                .clipped()
+                        }
+                        .padding(5)
                         
                     }
                 }

@@ -97,7 +97,7 @@ struct RecordCreator: View {
                         .frame(alignment: .center)
                     
                     if noteIsFocused{
-                        Button("Done", action: {
+                        Button("Fertig", action: {
                             noteIsFocused = false
                         })
                         .frame(maxWidth: .infinity, alignment: .trailing)
