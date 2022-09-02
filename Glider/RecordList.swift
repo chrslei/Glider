@@ -96,12 +96,11 @@ struct RecordList: View {
                                 {
                                     
                                     Chart {
-                                        
                                         ForEach(recordData.sortedRecords(
                                             period: filter, isFalling: false, searchText: searchText)) { $record in
                                                 LineMark(
-                                                    x: .value("Shape Type", record.start.formatted(.dateTime.day().month())),
-                                                    y: .value("Total Count", record.durationInHours)
+                                                    x: .value("Date", record.start.formatted(.dateTime.day().month())),
+                                                    y: .value("Duration", record.durationInHours)
                                                 )
                                             }
                                     }
