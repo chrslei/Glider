@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7FE4323A3527C9D436FCF6D4 /* Pods_Glider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCC9AD23838761BD4489E31 /* Pods_Glider.framework */; };
 		8A12A36028A68CCA004E0992 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12A35F28A68CCA004E0992 /* InfoView.swift */; };
 		8A12A36228A6A20C004E0992 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12A36128A6A20C004E0992 /* TestView.swift */; };
 		8A930C3928A2A2740076A63C /* GliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C3828A2A2740076A63C /* GliderApp.swift */; };
@@ -18,13 +19,14 @@
 		8A930C4B28A2A2EA0076A63C /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4A28A2A2EA0076A63C /* RecordData.swift */; };
 		8A930C4D28A2A3030076A63C /* RecordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4C28A2A3030076A63C /* RecordList.swift */; };
 		8A930C4F28A2A3190076A63C /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A930C4E28A2A3190076A63C /* RecordRow.swift */; };
+		8AE19ED429F3EC35007050CD /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 8AE19ED329F3EC35007050CD /* SwiftDate */; };
 		8AE4606628AFB87800DBBAB2 /* RangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4606528AFB87800DBBAB2 /* RangePicker.swift */; };
 		8AE4606828AFCC3B00DBBAB2 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4606728AFCC3B00DBBAB2 /* SearchBar.swift */; };
-		9C77D4026A69BC0F4B6D79EA /* Pods_Glider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40B73A1C707123221EFBD06 /* Pods_Glider.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3558FB9E1A4EDD6A6A0F4055 /* Pods-Glider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.release.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.release.xcconfig"; sourceTree = "<group>"; };
+		08D38E83CF9AD0F632855E26 /* Pods-Glider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.release.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.release.xcconfig"; sourceTree = "<group>"; };
+		54529FD768E1C0A534E468DA /* Pods-Glider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.debug.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.debug.xcconfig"; sourceTree = "<group>"; };
 		8A12A35F28A68CCA004E0992 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		8A12A36128A6A20C004E0992 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		8A930C3528A2A2740076A63C /* Glider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,8 +41,7 @@
 		8A930C4E28A2A3190076A63C /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
 		8AE4606528AFB87800DBBAB2 /* RangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePicker.swift; sourceTree = "<group>"; };
 		8AE4606728AFCC3B00DBBAB2 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		B40B73A1C707123221EFBD06 /* Pods_Glider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0342BA44ED3BF60F06981D0 /* Pods-Glider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glider.debug.xcconfig"; path = "Target Support Files/Pods-Glider/Pods-Glider.debug.xcconfig"; sourceTree = "<group>"; };
+		BCCC9AD23838761BD4489E31 /* Pods_Glider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C77D4026A69BC0F4B6D79EA /* Pods_Glider.framework in Frameworks */,
+				8AE19ED429F3EC35007050CD /* SwiftDate in Frameworks */,
+				7FE4323A3527C9D436FCF6D4 /* Pods_Glider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +60,8 @@
 		207F24553FB7A7DDF418C96E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E0342BA44ED3BF60F06981D0 /* Pods-Glider.debug.xcconfig */,
-				3558FB9E1A4EDD6A6A0F4055 /* Pods-Glider.release.xcconfig */,
+				54529FD768E1C0A534E468DA /* Pods-Glider.debug.xcconfig */,
+				08D38E83CF9AD0F632855E26 /* Pods-Glider.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -70,7 +72,7 @@
 				8A930C3728A2A2740076A63C /* Glider */,
 				8A930C3628A2A2740076A63C /* Products */,
 				207F24553FB7A7DDF418C96E /* Pods */,
-				8DFED3DFE25C61251388E87F /* Frameworks */,
+				AD569E9BCDE58F325254CE82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,10 +112,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8DFED3DFE25C61251388E87F /* Frameworks */ = {
+		AD569E9BCDE58F325254CE82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B40B73A1C707123221EFBD06 /* Pods_Glider.framework */,
+				BCCC9AD23838761BD4489E31 /* Pods_Glider.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,17 +127,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A930C4328A2A2750076A63C /* Build configuration list for PBXNativeTarget "Glider" */;
 			buildPhases = (
-				AABE6AE549B3FB66D173F69C /* [CP] Check Pods Manifest.lock */,
+				DC887A7B2AC1D649A640119C /* [CP] Check Pods Manifest.lock */,
 				8A930C3128A2A2740076A63C /* Sources */,
 				8A930C3228A2A2740076A63C /* Frameworks */,
 				8A930C3328A2A2740076A63C /* Resources */,
-				2537C048FC0396A09B67345E /* [CP] Embed Pods Frameworks */,
+				F109534EC3A48FDE4C7736CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Glider;
+			packageProductDependencies = (
+				8AE19ED329F3EC35007050CD /* SwiftDate */,
+			);
 			productName = Glider;
 			productReference = 8A930C3528A2A2740076A63C /* Glider.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +169,9 @@
 				Base,
 			);
 			mainGroup = 8A930C2C28A2A2740076A63C;
+			packageReferences = (
+				8AE19ED229F3EC35007050CD /* XCRemoteSwiftPackageReference "SwiftDate" */,
+			);
 			productRefGroup = 8A930C3628A2A2740076A63C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -186,24 +194,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2537C048FC0396A09B67345E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AABE6AE549B3FB66D173F69C /* [CP] Check Pods Manifest.lock */ = {
+		DC887A7B2AC1D649A640119C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -223,6 +214,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F109534EC3A48FDE4C7736CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glider/Pods-Glider-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -365,7 +373,7 @@
 		};
 		8A930C4428A2A2750076A63C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0342BA44ED3BF60F06981D0 /* Pods-Glider.debug.xcconfig */;
+			baseConfigurationReference = 54529FD768E1C0A534E468DA /* Pods-Glider.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -395,7 +403,7 @@
 		};
 		8A930C4528A2A2750076A63C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3558FB9E1A4EDD6A6A0F4055 /* Pods-Glider.release.xcconfig */;
+			baseConfigurationReference = 08D38E83CF9AD0F632855E26 /* Pods-Glider.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -445,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8AE19ED229F3EC35007050CD /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8AE19ED329F3EC35007050CD /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AE19ED229F3EC35007050CD /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A930C2D28A2A2740076A63C /* Project object */;
 }

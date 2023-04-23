@@ -6,6 +6,6 @@ target 'Glider' do
   use_frameworks!
 
   # Pods for Glider
-pod 'SwiftDate', '~> 5.0'
+pod 'SwiftDate'
 
 end

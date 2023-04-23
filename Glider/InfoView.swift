@@ -55,7 +55,9 @@ struct InfoView: View {
                     }
                 }
         Section ("Copyright") {
-            Text("© 2022 Christopher Leibiger")
+            Text("© 2023 Christopher Leibiger")
+                .font(.footnote)
+            Text("Kontakt: info@abbildung.org")
                 .font(.footnote)
               
         }
